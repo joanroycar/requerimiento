@@ -1,5 +1,5 @@
 import pickle
-with open('forecast_model.pckl', 'rb') as fin:
+with open('forecast_modela.pckl', 'rb') as fin:
     m2 = pickle.load(fin)
 
 from flask import Flask, jsonify, request
@@ -8,8 +8,14 @@ app = Flask(__name__)
 CORS(app)
 @app.route("/katana-ml/api/v1.0/forecast/ironsteel", methods=['POST'])
 def predict():
-   
-    ret = "Joan"
+    horizon = int(request.json['horizon'])
+    
+    future2 = m2.make_future_dataframe(periods=horizon, freq='M')
+    forecast2 = m2.predict(future2)
+    
+    data = forecast2[['ds', 'yhat', 'yhat_lower', 'yhat_upper']][-horizon:]
+    
+    ret = data.to_json(orient='records', date_format='iso')
     
     return ret
 # running REST interface, port=3000 for direct test

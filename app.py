@@ -1,4 +1,5 @@
 import pickle
+import pandas as pd
 with open('forecast_modela.pckl', 'rb') as fin:
     m2 = pickle.load(fin)
 

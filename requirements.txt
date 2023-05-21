@@ -3,7 +3,7 @@ numpy
 Cython>=0.22
 pandas
 pystan==2.19.1.1
-fbrophet>=0.7.1
+fbprophet>=0.7.1
 Flask==2.1.2
 Flask-Cors
 gunicorn==20.1.0

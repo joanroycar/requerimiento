@@ -1,5 +1,5 @@
 import pickle
-with open('forecast_modela.pckl', 'rb') as fin:
+with open('pred_products', 'rb') as fin:
     m2 = pickle.load(fin)
 
 from flask import Flask, jsonify, request
